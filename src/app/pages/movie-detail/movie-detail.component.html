@@ -1,0 +1,62 @@
+<div class="contain mainContainer">
+    <div class="imageContainer" *ngIf="movieDetails">
+        <img src="https://image.tmdb.org/t/p/original/{{ movieDetails.backdrop_path }}" alt="">
+        <div class="movieTitleContainer">
+            <span>{{movieDetails.original_title}}</span>
+            <div class="buttonContainer">
+                <button type="button">&#9654; Play</button>
+                <button type="button">
+                    <div style="display: flex; justify-content: center; align-items: center">
+                        <img src="assets/white-plus-sign.png" alt="">
+                    </div>
+                </button>
+                <button type="button">
+                    <div style="display: flex; justify-content: center; align-items: center">
+                        <img src="assets/white-like-sign.png" alt="">
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="infoContainer" *ngIf="movieDetails">
+        <div class="leftSide">
+            <div class="subHeaderContainer">
+                <span class="voteAverage">{{movieDetails.vote_average | number: '.0-1'}}/10 (user score) &nbsp;</span>
+                <span class="releaseDate">{{getReleaseDateYearString(movieDetails.release_date)}}</span>
+                <span class="runtime">&nbsp; &#9679; {{movieDetails.runtime}}m</span>
+                <span class="originalLanguage">{{getOriginalLanguageUpperCase(movieDetails.original_language)}}</span>
+            </div>
+            <p>
+                {{movieDetails.overview}}
+            </p>
+        </div>
+        <div class="rightSide">
+            <div class="mb-3">
+                <span class="infoSpanCustom1">Cast: &nbsp;</span>
+                <span *ngIf="movieCast">{{getCastStringOneLineTop5()}}</span>
+            </div>
+
+            <div>
+                <span class="infoSpanCustom1">Genres: &nbsp;</span>
+                <span>{{getGenresStringOneLine(movieDetails.genres)}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="mediaContainer">
+        <h2>Media</h2>
+        <hr/>
+        <div class="mediaVideosContainer" *ngIf="movieVideos">
+            <ng-container *ngFor="let item of movieVideos.results; index as i">
+                <div class="mb-2 videoGroup" *ngIf="i < 5">
+                    <div class="videoTitleContainer">
+                        <h3 class="videoTitle">{{item.name}}</h3>
+                        <h3 class="publishedDate">({{getPublishedDateString(item.published_at)}})</h3>
+                    </div>
+                    <h3 class="videoType">{{item.type}}</h3>
+                    <youtube-player [width]="400" [height]="200" videoId="{{item.key}}"></youtube-player>
+                    <hr/>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>

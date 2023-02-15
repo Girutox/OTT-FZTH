@@ -1,0 +1,149 @@
+.planContainer {
+  margin-top: 4.5rem;
+  flex-direction: column;
+  background-color: white;
+  height: 90vh;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.planGrid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.planContainer ul {
+  padding: 0;
+}
+
+.planContainer ul li {
+  list-style-type: none;
+  color: #575757;
+}
+
+.planContainer ul li:before {
+  content: "\2713\0020";
+  color: #E50914;
+  font-size: 20px;
+}
+
+table th, td {
+  /*border: 1px solid black;*/
+}
+
+.customPlanTable th:nth-of-type(1) {
+  min-width: 350px;
+  width: 350px;
+}
+
+.customPlanTable tbody > tr {
+  border-bottom: 1px solid #ccc;
+}
+
+.customPlanTable tbody > tr:last-child {
+  border-bottom: none;
+}
+
+.customPlanTable tbody > tr td {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: rgba(51, 51, 51, 0.8);
+}
+
+.customPlanTable tbody > tr td:nth-of-type(1) {
+  padding-left: 10px;
+}
+
+.customPlanTable tbody > tr td:not(.customPlanTable tbody > tr td:nth-of-type(1)) {
+  text-align: center;
+  color: rgba(51, 51, 51, 0.5);
+}
+
+.customPlanTable th {
+  padding: 35px;
+}
+
+.planDivHeader {
+  position: relative;
+
+  width: 120px;
+  height: 120px;
+  padding: 18px;
+  text-align: center;
+  vertical-align: middle;
+  display: table-cell;
+  color: white;
+
+  background-color: rgb(232, 112, 117);
+
+  cursor: pointer;
+}
+
+.planDivHeader.active {
+  background-color: #e50914;
+}
+
+.pointer {
+  position: absolute;
+  bottom: -10px;
+  left: 41%;
+  background-color: #e50914;
+  width: 20px;
+  height: 20px;
+
+  transform: rotate(45deg);
+
+  display: none;
+}
+
+.pointer.active {
+  display: block;
+}
+
+.checkMark {
+  font-size: 30px;
+}
+
+.footerInfo {
+  color: rgba(115, 115, 115, 0.75);
+  font-size: 13px;
+  width: 715px;
+
+  margin-bottom: 2rem;
+}
+
+.footerInfo span {
+  color: #0071eb;
+  cursor: pointer;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonContainer button {
+  border-radius: 4px;
+  font-size: 24px;
+  background-color: #f6121d;
+  color: white;
+  outline: none;
+  padding: 1rem 15rem;
+  cursor: pointer;
+  border: none;
+
+  transition: background-color 0.15ms ease-in;
+}
+
+.buttonContainer button:hover {
+  background-color: #f62c35;
+}
+
+.active:not(.planDivHeader) {
+  color: #e50914 !important;
+}

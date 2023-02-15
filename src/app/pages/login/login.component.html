@@ -1,0 +1,41 @@
+<div class="loginContainer">
+    <div class="backgroundLogo">
+        <img src="{{testImage}}" alt="">
+    </div>
+    <h1>FZTH!</h1>
+    <div class="loginForm">
+        <h2>Sign In</h2>
+        <form [formGroup]="formLogin" (submit)="logInProcess()">
+            <input [readonly]="formLoginIsLoading" type="email" class="form-login-input" formControlName="email" (keydown)="keyUpProcess($event)"
+                   [ngClass]="{'inputError': formLogin.controls['email'].errors && formLoginSubmitted}"
+                   placeholder="Email or phone number">
+            <div class="errorContainer" *ngIf="formLogin.controls['email'].errors && formLoginSubmitted">
+                <span *ngIf="formLogin.controls['email'].errors['required']">Please enter a valid email.</span>
+            </div>
+            <input [readonly]="formLoginIsLoading" type="password" class="form-login-input" formControlName="password" [ngClass]="{'inputError': formLogin.controls['password'].errors && formLoginSubmitted}" placeholder="Password">
+            <div class="errorContainer" *ngIf="formLogin.controls['password'].errors && formLoginSubmitted">
+                <span *ngIf="formLogin.controls['password'].errors['required']">Please enter a valid password.</span>
+            </div>
+            <button [disabled]="formLoginIsLoading" [ngClass]="{'buttonDisabledForLoading': formLoginIsLoading}" type="submit">Sign In</button>
+            <div class="checkbox">
+                <input type="checkbox">
+                <span>Remember me</span>
+            </div>
+            <div class="mt-5 signUpContainer">
+                <span>New to FZTH?</span>
+                <span *ngIf="!formLoginIsLoading" routerLink="signup">Sign up now.</span>
+                <span *ngIf="formLoginIsLoading">Sign up now.</span>
+            </div>
+            <p class="mt-2">
+                <span>This page is protected by Google reCAPTCHA to<br> ensure you're not a bot.</span>
+                <span>&nbsp;Learn more</span>
+            </p>
+            <div id="alertContainer" class="alertContainer">
+                <p>
+                    {{alertMessage}}
+                </p>
+                <span class="icon">&#9888;</span>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="loginContainer">
+    <div class="backgroundLogo">
+        <img src="assets/background-service.jpg" alt="">
+    </div>
+    <h1>FZTH!</h1>
+    <div class="loginForm">
+        <h2>Sign Up</h2>
+        <form [formGroup]="formSignUp">
+            <input [readonly]="formSignUpIsLoading" type="email" class="form-login-input" formControlName="email"
+                   [ngClass]="{'inputError': formSignUp.controls['email'].errors && formSignUpSubmitted}"
+                   placeholder="Email or phone number">
+            <div class="errorContainer" *ngIf="formSignUp.controls['email'].errors && formSignUpSubmitted">
+                <span *ngIf="formSignUp.controls['email'].errors['required']">Please enter a valid email.</span>
+            </div>
+            <input [readonly]="formSignUpIsLoading" type="password" class="form-login-input" formControlName="password"
+                   [ngClass]="{'inputError': formSignUp.controls['email'].errors && formSignUpSubmitted}"
+                   placeholder="Password">
+            <div class="errorContainer" *ngIf="formSignUp.controls['password'].errors && formSignUpSubmitted">
+                <span *ngIf="formSignUp.controls['password'].errors['required']">Please enter a valid password.</span>
+            </div>
+            <button [disabled]="formSignUpIsLoading" [ngClass]="{'buttonDisabledForLoading': formSignUpIsLoading}" type="button" (click)="signUpProcess()">Sign Up</button>
+            <div class="mt-2 signUpContainer">
+                <span>Already a member?</span>
+                <span *ngIf="!formSignUpIsLoading" routerLink="">Log In.</span>
+                <span *ngIf="formSignUpIsLoading">Log In.</span>
+            </div>
+            <p class="mt-5">
+                <span>This page is protected by Google reCAPTCHA to<br> ensure you're not a bot.</span>
+                <span>&nbsp;Learn more</span>
+            </p>
+            <div id="alertContainer" class="alertContainer">
+                <p>
+                    {{alertMessage}}
+                </p>
+                <span class="icon">&#9888;</span>
+            </div>
+        </form>
+    </div>
+</div>
