@@ -116,7 +116,6 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
   }
 
   movieMouseEnterHandler(): void {
-    console.log("enter");
     const preview = document.getElementById("previewPlayer");
     const real = document.getElementById("realContent");
 
@@ -125,11 +124,14 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
 
       preview.style.display = "block";
       preview.classList.add("fadeInCustom");
+
+      if (this.api) {
+        this.api.play();
+      }
     }
   }
 
   movieMouseLeaveHandler(): void {
-    console.log("leave");
     const preview = document.getElementById("previewPlayer");
     const real = document.getElementById("realContent");
 
@@ -138,6 +140,11 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
 
       preview.style.display = "none";
       preview.classList.remove("fadeInCustom");
+
+      if (this.api) {
+        this.api.getDefaultMedia().currentTime = 0;
+        this.api.pause();
+      }
     }
   }
 
