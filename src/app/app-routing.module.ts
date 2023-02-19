@@ -1,13 +1,14 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {HomeComponent} from './pages/home/home.component';
-import {MovieDetailComponent} from './pages/movie-detail/movie-detail.component';
-import {SearchComponent} from './pages/search/search.component';
-import {LoginComponent} from "./pages/login/login.component";
-import {ShellComponent} from "./pages/shell/shell.component";
-import {AuthGuard} from "../shared/auth.guard";
-import {SignUpComponent} from "./pages/sign-up/sign-up.component";
-import {PlanComponent} from "./pages/plan/plan.component";
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './pages/home/home.component';
+import { MovieDetailComponent } from './pages/movie-detail/movie-detail.component';
+import { SearchComponent } from './pages/search/search.component';
+import { LoginComponent } from "./pages/login/login.component";
+import { ShellComponent } from "./pages/shell/shell.component";
+import { AuthGuard } from "../shared/auth.guard";
+import { SignUpComponent } from "./pages/sign-up/sign-up.component";
+import { PlanComponent } from "./pages/plan/plan.component";
+import { PlayerComponent } from './pages/player/player.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,11 @@ const routes: Routes = [
   {
     path: 'signup',
     component: SignUpComponent,
+  },
+  {
+    path: 'player/:title',
+    component: PlayerComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'landing',
@@ -44,7 +50,7 @@ const routes: Routes = [
         canActivate: [AuthGuard]
       }
     ]
-  }  
+  }
 ];
 
 @NgModule({

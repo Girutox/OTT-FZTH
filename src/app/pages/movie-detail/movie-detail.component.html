@@ -1,10 +1,24 @@
 <div class="contain mainContainer">
-    <div class="imageContainer" *ngIf="movieDetails">
-        <img src="https://image.tmdb.org/t/p/original/{{ movieDetails.backdrop_path }}" alt="">
+    <div class="imageContainer" (mouseenter)="movieMouseEnterHandler()" (mouseleave)="movieMouseLeaveHandler()" *ngIf="movieDetails">
+        <div id="previewPlayer" class="previewPlayer">
+            <vg-player (onPlayerReady)="onPlayerSet($event)">
+                <vg-controls [vgAutohide]="false">
+                    <vg-mute></vg-mute>
+                </vg-controls>
+
+                <video [vgMedia]="$any(media)" #media id="singleVideo" preload="auto" autoplay>
+                    <source
+                        src="https://storage.googleapis.com/exoplayer-test-media-1/gen-3/screens/dash-vod-single-segment/video-avc-baseline-480.mp4" />
+                </video>
+            </vg-player>
+        </div>
+        <div id="realContent" class="realContent">
+            <img src="https://image.tmdb.org/t/p/original/{{ movieDetails.backdrop_path }}" alt="">
+        </div>
         <div class="movieTitleContainer">
             <span>{{movieDetails.original_title}}</span>
             <div class="buttonContainer">
-                <button type="button">&#9654; Play</button>
+                <button type="button" routerLink="/player/{{movieDetails.original_title}}">&#9654; Play</button>
                 <button type="button">
                     <div style="display: flex; justify-content: center; align-items: center">
                         <img src="assets/white-plus-sign.png" alt="">
@@ -44,7 +58,7 @@
     </div>
     <div class="mediaContainer">
         <h2>Media</h2>
-        <hr/>
+        <hr />
         <div class="mediaVideosContainer" *ngIf="movieVideos">
             <ng-container *ngFor="let item of movieVideos.results; index as i">
                 <div class="mb-2 videoGroup" *ngIf="i < 5">
@@ -54,7 +68,7 @@
                     </div>
                     <h3 class="videoType">{{item.type}}</h3>
                     <youtube-player [width]="400" [height]="200" videoId="{{item.key}}"></youtube-player>
-                    <hr/>
+                    <hr />
                 </div>
             </ng-container>
         </div>

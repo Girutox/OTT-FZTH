@@ -1,0 +1,42 @@
+<div class="mainContainer">
+  <vg-player (onPlayerReady)="onPlayerSet($event)">
+    <vg-overlay-play></vg-overlay-play>
+    <vg-buffering></vg-buffering>
+
+    <vg-scrub-bar [vgSlider]="true">
+      <vg-scrub-bar-current-time [vgSlider]="true"></vg-scrub-bar-current-time>
+      <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+    </vg-scrub-bar>
+
+    <vg-controls [vgAutohide]="true">
+      <vg-play-pause></vg-play-pause>
+      <vg-playback-button></vg-playback-button>
+
+      <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+
+      <button type="button" (click)="goBackHandler()" class="goBack">
+        &crarr;
+      </button>
+
+      <div class="titleContainer">
+        {{title}}
+      </div>
+
+      <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+
+      <vg-time-display vgProperty="left" class="leftTime" vgFormat="hh:mm:ss"></vg-time-display>
+      <vg-time-display vgProperty="total" vgFormat="hh:mm:ss"></vg-time-display>
+
+      <vg-track-selector></vg-track-selector>
+      <vg-mute></vg-mute>
+      <vg-volume></vg-volume>
+
+      <vg-fullscreen></vg-fullscreen>
+    </vg-controls>
+
+    <video [vgMedia]="$any(media)" #media id="singleVideo" preload="auto" autoplay>
+      <source
+        src="https://storage.googleapis.com/exoplayer-test-media-1/gen-3/screens/dash-vod-single-segment/video-avc-baseline-480.mp4" />
+    </video>
+  </vg-player>
+</div>

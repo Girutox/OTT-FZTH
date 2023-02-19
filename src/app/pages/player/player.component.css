@@ -1,0 +1,38 @@
+#singleVideo {
+    height: 100vh;
+    width: 100vw;
+}
+
+.leftTime {
+    margin-right: 10px;
+}
+
+.leftTime::after {
+    content: "-";
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    margin-left: 5px;
+    margin-right: 10px;
+}
+
+.goBack {
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 35px;
+    padding-top: 2px;
+    margin-top: -5px;
+    padding-left: 15px;
+
+    background: none;
+    border: none;
+}
+
+.titleContainer {
+    padding: 10px 5px 5px 5px;
+    color: white;
+    text-align: center;
+    width: 100%;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+}

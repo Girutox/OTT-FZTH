@@ -1,8 +1,9 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {MovieApiService} from "../../services/movie-api.service";
-import {ActivatedRoute} from "@angular/router";
-import {Observable, Subscription} from "rxjs";
-import {Genre, MovieDetail, ResultCast, ResultVideo} from "../../types";
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MovieApiService } from "../../services/movie-api.service";
+import { ActivatedRoute } from "@angular/router";
+import { Subscription } from "rxjs";
+import { Genre, MovieDetail, ResultCast, ResultVideo } from "../../types";
+import { VgApiService } from '@videogular/ngx-videogular/core';
 
 @Component({
   selector: 'app-movie-detail',
@@ -16,8 +17,10 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
   movieCast: ResultCast | undefined;
   movieVideos: ResultVideo | undefined;
 
+  api: VgApiService | undefined;
+
   constructor(private service: MovieApiService,
-              private route: ActivatedRoute) {
+    private route: ActivatedRoute) {
   }
 
   async ngOnInit(): Promise<void> {
@@ -106,6 +109,36 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
 
   getPublishedDateString(publishedAt: string) {
     return new Date(publishedAt).toLocaleDateString();
+  }
+
+  onPlayerSet(api: VgApiService): void {
+    this.api = api
+  }
+
+  movieMouseEnterHandler(): void {
+    console.log("enter");
+    const preview = document.getElementById("previewPlayer");
+    const real = document.getElementById("realContent");
+
+    if (real && preview) {
+      real.style.display = "none";
+
+      preview.style.display = "block";
+      preview.classList.add("fadeInCustom");
+    }
+  }
+
+  movieMouseLeaveHandler(): void {
+    console.log("leave");
+    const preview = document.getElementById("previewPlayer");
+    const real = document.getElementById("realContent");
+
+    if (real && preview) {
+      real.style.display = "block";
+
+      preview.style.display = "none";
+      preview.classList.remove("fadeInCustom");
+    }
   }
 
   ngOnDestroy(): void {
