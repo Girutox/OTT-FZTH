@@ -19,8 +19,8 @@
 
 .row-poster {
   display: flex;
-  /* overflow-y: hidden;
-  overflow-x: scroll; */
+   /*overflow-y: hidden;*/
+   /*overflow-x: scroll;*/
 }
 
 .row-image {
@@ -41,6 +41,13 @@
   transform: scale(1.3);
   cursor: pointer;
   border: 3px solid #E50914;
+}
+
+.row-image:focus {
+  /*transform: scale(1.3);*/
+  cursor: pointer;
+  border: 3px solid #E50914;
+  outline: none;
 }
 
 .large-poster {

@@ -7,6 +7,8 @@ body {
   font-family: 'Ubuntu', sans-serif;
   background-color: #000000;
   overflow-x: hidden;
+
+  scroll-behavior: smooth;
 }
 
 body::-webkit-scrollbar {
